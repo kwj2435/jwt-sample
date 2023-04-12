@@ -1,5 +1,6 @@
 package com.study.jwtsample.exception;
 
+import com.study.jwtsample.exception.code.ExceptionCode;
 import org.springframework.http.HttpStatus;
 
 public class CommonException extends RuntimeException{

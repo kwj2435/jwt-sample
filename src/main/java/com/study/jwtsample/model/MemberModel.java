@@ -1,8 +1,5 @@
 package com.study.jwtsample.model;
 
-import com.study.jwtsample.exception.ApiExceptionCode;
-import com.study.jwtsample.exception.CommonException;
-import com.study.jwtsample.utils.PasswordUtils;
 import lombok.Builder;
 import lombok.Getter;
 

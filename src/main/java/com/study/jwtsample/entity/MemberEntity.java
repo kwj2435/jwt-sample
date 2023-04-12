@@ -1,6 +1,6 @@
 package com.study.jwtsample.entity;
 
-import com.study.jwtsample.exception.ApiExceptionCode;
+import com.study.jwtsample.exception.code.ApiExceptionCode;
 import com.study.jwtsample.exception.CommonException;
 import com.study.jwtsample.model.MemberModel;
 import com.study.jwtsample.utils.PasswordUtils;
@@ -16,10 +16,13 @@ import javax.persistence.*;
 @NoArgsConstructor
 @AllArgsConstructor
 public class MemberEntity {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+
     private String email;
+
     private String password;
 
     public MemberModel.Member toMember() {
@@ -28,6 +31,7 @@ public class MemberEntity {
                 .email(this.email)
                 .build();
     }
+
     public static MemberEntity createForNewMember(MemberModel.MemberRequestDto requestDto) {
         if(PasswordUtils.isValidatePassword(requestDto.getPassword(), requestDto.getPasswordCheck())) {
             throw new CommonException(ApiExceptionCode.AE_400_10000);
