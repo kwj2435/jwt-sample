@@ -1,4 +1,4 @@
-package com.study.jwtsample.exception.code;
+package com.study.jwtsample.common.exception.code;
 
 import org.springframework.http.HttpStatus;
 

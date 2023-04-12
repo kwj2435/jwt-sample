@@ -1,4 +1,4 @@
-package com.study.jwtsample.model;
+package com.study.jwtsample.member.model;
 
 import lombok.Builder;
 import lombok.Getter;

@@ -1,4 +1,4 @@
-package com.study.jwtsample.exception;
+package com.study.jwtsample.common.exception;
 
 public class ExceptionResponse<T> {
     private String exceptionCode;

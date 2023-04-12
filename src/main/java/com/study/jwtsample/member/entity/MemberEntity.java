@@ -1,9 +1,9 @@
-package com.study.jwtsample.entity;
+package com.study.jwtsample.member.entity;
 
-import com.study.jwtsample.exception.code.ApiExceptionCode;
-import com.study.jwtsample.exception.CommonException;
-import com.study.jwtsample.model.MemberModel;
-import com.study.jwtsample.utils.PasswordUtils;
+import com.study.jwtsample.common.exception.code.ApiExceptionCode;
+import com.study.jwtsample.common.exception.CommonException;
+import com.study.jwtsample.member.model.MemberModel;
+import com.study.jwtsample.member.utils.PasswordUtils;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.NoArgsConstructor;

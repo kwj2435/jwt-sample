@@ -1,4 +1,4 @@
-package com.study.jwtsample.utils;
+package com.study.jwtsample.member.utils;
 
 public class PasswordUtils {
 

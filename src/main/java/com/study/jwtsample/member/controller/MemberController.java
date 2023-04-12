@@ -1,7 +1,7 @@
-package com.study.jwtsample.controller;
+package com.study.jwtsample.member.controller;
 
-import com.study.jwtsample.model.MemberModel;
-import com.study.jwtsample.service.MemberService;
+import com.study.jwtsample.member.model.MemberModel;
+import com.study.jwtsample.member.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;

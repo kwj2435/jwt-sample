@@ -1,8 +1,8 @@
-package com.study.jwtsample.service;
+package com.study.jwtsample.member.service;
 
-import com.study.jwtsample.entity.MemberEntity;
-import com.study.jwtsample.model.MemberModel;
-import com.study.jwtsample.repository.MemberEntityRepository;
+import com.study.jwtsample.member.entity.MemberEntity;
+import com.study.jwtsample.member.model.MemberModel;
+import com.study.jwtsample.member.repository.MemberEntityRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
