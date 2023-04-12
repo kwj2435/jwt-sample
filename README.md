@@ -1,4 +1,4 @@
-## Spring Security + Redis 이용 JWT 토큰 활용 인증, 인가 구현
+## Spring Security + Redis 이용 JWT 토큰 활용 인증, 인가 구현 
 
 ### Skill Stack  
 Spring Boot  
