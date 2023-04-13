@@ -1,0 +1,1 @@
+INSERT INTO MEMBER(USER_EMAIL, PASSWORD) VALUES ('test@gmail.com', 'abcde');
