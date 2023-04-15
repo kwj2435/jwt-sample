@@ -3,7 +3,8 @@ package com.study.jwtsample.common.exception.code;
 import org.springframework.http.HttpStatus;
 
 public enum ApiExceptionCode implements ExceptionCode {
-    AE_400_10000(HttpStatus.BAD_REQUEST, "400_10000", "입력된 두개의 비밀번호가 일치하지 않습니다.");
+    AE_400_10000(HttpStatus.BAD_REQUEST, "400_10000", "입력된 두개의 비밀번호가 일치하지 않습니다."),
+    AE_404_10000(HttpStatus.NOT_FOUND, "404_10000", "존재하지 않는 회원 입니다.");
 
     private HttpStatus status;
     private String code;

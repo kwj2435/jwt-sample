@@ -6,11 +6,14 @@ import com.study.jwtsample.member.model.MemberModel;
 import com.study.jwtsample.member.utils.PasswordUtils;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import javax.persistence.*;
 
 @Entity
+@Getter
 @Builder
 @Table(name = "MEMBER")
 @NoArgsConstructor
@@ -32,14 +35,14 @@ public class MemberEntity {
                 .build();
     }
 
-    public static MemberEntity createForNewMember(MemberModel.MemberRequestDto requestDto) {
+    public static MemberEntity createForNewMember(MemberModel.MemberRequestDto requestDto, PasswordEncoder passwordEncoder) {
         if(PasswordUtils.isValidatePassword(requestDto.getPassword(), requestDto.getPasswordCheck())) {
             throw new CommonException(ApiExceptionCode.AE_400_10000);
         }
 
         return MemberEntity.builder()
                 .email(requestDto.getEmail())
-                .password(requestDto.getPassword())
+                .password(passwordEncoder.encode(requestDto.getPassword()))
                 .build();
     }
 }

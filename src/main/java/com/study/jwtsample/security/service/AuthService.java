@@ -1,5 +1,9 @@
 package com.study.jwtsample.security.service;
 
+import com.study.jwtsample.common.exception.CommonException;
+import com.study.jwtsample.common.exception.code.ApiExceptionCode;
+import com.study.jwtsample.member.entity.MemberEntity;
+import com.study.jwtsample.member.repository.MemberEntityRepository;
 import com.study.jwtsample.security.model.SecurityModel;
 import com.study.jwtsample.security.utils.JwtUtils;
 import lombok.RequiredArgsConstructor;
@@ -13,6 +17,7 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -21,15 +26,10 @@ import java.util.List;
 @RequiredArgsConstructor
 public class AuthService implements UserDetailsService {
 
+    private final PasswordEncoder passwordEncoder;
     private final AuthenticationManagerBuilder authenticationManagerBuilder;
 
-    @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return User.builder()
-                .username(username)
-                .password("abcde")
-                .build();
-    }
+    private final MemberEntityRepository memberEntityRepository;
 
     public SecurityModel.Token authenticate(SecurityModel.AuthenticateDto authenticateDto) {
         // 1. 전달 받은 로그인 정보를 인증 토큰으로 변환
@@ -44,6 +44,19 @@ public class AuthService implements UserDetailsService {
 
         // 4. 인증 토큰 기반으로 생성된 토큰을 반환한다.
         return JwtUtils.generateToken(authentication);
+    }
+
+    // loadUserByUsername에서 만들어진 UserDetails와 사용자 요청의 아이디, 패스워드를 비교하며 일치한지를 확인한다.
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        MemberEntity memberEntity =
+                memberEntityRepository.findByEmail(username).orElseThrow(() -> new CommonException(ApiExceptionCode.AE_404_10000));
+
+        return User.builder()
+                .username(memberEntity.getEmail())
+                .password(memberEntity.getPassword())
+                .authorities(getGrantedAuthorities())
+                .build();
     }
 
     private List<GrantedAuthority> getGrantedAuthorities() {
