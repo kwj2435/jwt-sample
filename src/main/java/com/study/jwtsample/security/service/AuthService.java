@@ -26,7 +26,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class AuthService implements UserDetailsService {
 
-    private final PasswordEncoder passwordEncoder;
+    private final JwtUtils jwtUtils;
     private final AuthenticationManagerBuilder authenticationManagerBuilder;
 
     private final MemberEntityRepository memberEntityRepository;
@@ -43,7 +43,7 @@ public class AuthService implements UserDetailsService {
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
         // 4. 인증 토큰 기반으로 생성된 토큰을 반환한다.
-        return JwtUtils.generateToken(authentication);
+        return jwtUtils.generateToken(authentication);
     }
 
     // loadUserByUsername에서 만들어진 UserDetails와 사용자 요청의 아이디, 패스워드를 비교하며 일치한지를 확인한다.
