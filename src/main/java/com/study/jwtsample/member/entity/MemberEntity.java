@@ -2,6 +2,7 @@ package com.study.jwtsample.member.entity;
 
 import com.study.jwtsample.common.exception.code.ApiExceptionCode;
 import com.study.jwtsample.common.exception.CommonException;
+import com.study.jwtsample.member.enums.Authority;
 import com.study.jwtsample.member.model.MemberModel;
 import com.study.jwtsample.member.utils.PasswordUtils;
 import lombok.AllArgsConstructor;
@@ -27,6 +28,8 @@ public class MemberEntity {
     private String email;
 
     private String password;
+
+    private Authority authority;
 
     public MemberModel.Member toMember() {
         return MemberModel.Member.builder()
