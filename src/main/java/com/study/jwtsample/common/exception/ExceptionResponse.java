@@ -2,11 +2,13 @@ package com.study.jwtsample.common.exception;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Getter;
 
 @AllArgsConstructor
 @Builder
-public class ExceptionResponse<T> {
+@Getter
+public class ExceptionResponse {
     private String exceptionCode;
     private String message;
-    private T data;
+    private String data;
 }
