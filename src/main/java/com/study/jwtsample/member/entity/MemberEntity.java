@@ -25,16 +25,17 @@ public class MemberEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    private String email;
+    @Column(name = "USER_EMAIL")
+    private String userEmail;
 
     private String password;
 
-    private Authority authority;
+    private String authority;
 
     public MemberModel.Member toMember() {
         return MemberModel.Member.builder()
                 .id(this.id)
-                .email(this.email)
+                .email(this.userEmail)
                 .build();
     }
 
@@ -44,7 +45,7 @@ public class MemberEntity {
         }
 
         return MemberEntity.builder()
-                .email(requestDto.getEmail())
+                .userEmail(requestDto.getEmail())
                 .password(passwordEncoder.encode(requestDto.getPassword()))
                 .build();
     }

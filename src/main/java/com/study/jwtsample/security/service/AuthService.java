@@ -7,6 +7,7 @@ import com.study.jwtsample.member.repository.MemberEntityRepository;
 import com.study.jwtsample.security.model.SecurityModel;
 import com.study.jwtsample.security.utils.JwtUtils;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.core.Authentication;
@@ -17,11 +18,11 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Log4j2
 @Service
 @RequiredArgsConstructor
 public class AuthService implements UserDetailsService {
@@ -50,17 +51,17 @@ public class AuthService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         MemberEntity memberEntity =
-                memberEntityRepository.findByEmail(username).orElseThrow(() -> new CommonException(ApiExceptionCode.AE_404_10000));
-
+                memberEntityRepository.findByUserEmail(username).orElseThrow(() -> new CommonException(ApiExceptionCode.AE_404_10000));
+        
         return User.builder()
-                .username(memberEntity.getEmail())
+                .username(memberEntity.getUserEmail())
                 .password(memberEntity.getPassword())
-                .authorities(getGrantedAuthorities())
+                .authorities(getGrantedAuthorities(memberEntity))
                 .build();
     }
 
-    private List<GrantedAuthority> getGrantedAuthorities() {
-        return List.of(new SimpleGrantedAuthority("test"));
+    private List<GrantedAuthority> getGrantedAuthorities(MemberEntity memberEntity) {
+        return List.of(new SimpleGrantedAuthority(memberEntity.getAuthority()));
     }
 
 }
