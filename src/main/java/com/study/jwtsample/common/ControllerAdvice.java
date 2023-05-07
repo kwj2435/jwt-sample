@@ -20,7 +20,9 @@ public class ControllerAdvice {
     @ExceptionHandler(value = {CommonException.class})
     public ResponseEntity<ExceptionResponse> commonExceptionHandler(CommonException e) {
         logger.info(e.getMessage());
-        return null;
+        return ResponseEntity.status(e.getStatus()).body(
+            new ExceptionResponse(e.getCode(), e.getMessage(), null)
+        );
     }
 
     @ExceptionHandler(value = {Exception.class})

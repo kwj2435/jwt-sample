@@ -25,8 +25,6 @@ public class AuthController{
 
     private final AuthService authService;
 
-    private final MemberEntityRepository memberEntityRepository;
-
     @PostMapping("/authenticate")
     public SecurityModel.Token authenticate(@Valid @RequestBody SecurityModel.AuthenticateDto authenticateDto) {
         return authService.authenticate(authenticateDto);
