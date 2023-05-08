@@ -21,7 +21,7 @@ public class ControllerAdvice {
     public ResponseEntity<ExceptionResponse> commonExceptionHandler(CommonException e) {
         logger.info(e.getMessage());
         return ResponseEntity.status(e.getStatus()).body(
-            new ExceptionResponse(e.getCode(), e.getMessage(), null)
+            new ExceptionResponse(e.getCode(), e.getMessage())
         );
     }
 
@@ -29,7 +29,7 @@ public class ControllerAdvice {
     public ResponseEntity<ExceptionResponse> exceptionHandler(Exception e) {
         logger.info(e.getMessage());
         return ResponseEntity.internalServerError().body(
-                new ExceptionResponse(AE_500_10000.getCode(), AE_500_10000.getMessage(), e.getCause().getMessage())
+                new ExceptionResponse(AE_500_10000.getCode(), AE_500_10000.getMessage())
         );
     }
 }

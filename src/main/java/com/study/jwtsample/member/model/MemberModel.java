@@ -11,6 +11,7 @@ public class MemberModel {
     public static class Member {
         private long id;
         private String email;
+        private String authority;
     }
 
     @Getter

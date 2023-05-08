@@ -18,6 +18,9 @@ public class MemberService {
     private final PasswordEncoder passwordEncoder;
     private final MemberEntityRepository memberEntityRepository;
 
+    /**
+     *  회원 등록
+     */
     public MemberModel.Member addMember(MemberModel.MemberRequestDto requestDto) {
         if(memberEntityRepository.findByUserEmail(requestDto.getEmail()).isPresent()) {
             throw new CommonException(ApiExceptionCode.AE_400_10001);

@@ -10,5 +10,4 @@ import lombok.Getter;
 public class ExceptionResponse {
     private String exceptionCode;
     private String message;
-    private String data;
 }

@@ -35,6 +35,7 @@ public class MemberEntity {
         return MemberModel.Member.builder()
                 .id(this.id)
                 .email(this.userEmail)
+                .authority(this.authority)
                 .build();
     }
 
@@ -46,6 +47,7 @@ public class MemberEntity {
         return MemberEntity.builder()
                 .userEmail(requestDto.getEmail())
                 .password(passwordEncoder.encode(requestDto.getPassword()))
+                .authority("REGULAR")   //todo 추후 별도 ENUM 처리
                 .build();
     }
 }
