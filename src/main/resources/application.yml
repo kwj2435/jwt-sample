@@ -9,7 +9,7 @@ spring:
     console:
       enabled: true
 jwt:
-  secret: jwtSample33!@(*
+  secret: jwtSample33abcdeDDSDFCsdfsdfdabcde1231232ssd
 
 server:
   port: 8081

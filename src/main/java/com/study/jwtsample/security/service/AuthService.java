@@ -51,7 +51,8 @@ public class AuthService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         MemberEntity memberEntity =
-                memberEntityRepository.findByUserEmail(username).orElseThrow(() -> new CommonException(ApiExceptionCode.AE_404_10000));
+                memberEntityRepository.findByUserEmail(username)
+                    .orElseThrow(() -> new CommonException(ApiExceptionCode.AE_404_10000));
         
         return User.builder()
                 .username(memberEntity.getUserEmail())

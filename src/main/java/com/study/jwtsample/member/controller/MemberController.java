@@ -16,6 +16,7 @@ public class MemberController {
 
     private final MemberService memberService;
 
+    /** 회원 가입 */
     @PostMapping
     public MemberModel.Member addMember(@Valid @RequestBody MemberModel.MemberRequestDto requestDto) {
         return memberService.addMember(requestDto);
