@@ -2,7 +2,10 @@ package com.uj.jwtsample.member.model;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 public class Member {
 
@@ -23,6 +26,9 @@ public class Member {
   }
 
   @Getter
+  @NoArgsConstructor
+  @Builder
+  @AllArgsConstructor
   public static class MemberResult {
     private String email;
 

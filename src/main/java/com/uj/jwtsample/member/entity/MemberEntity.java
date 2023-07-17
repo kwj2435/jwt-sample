@@ -1,7 +1,5 @@
 package com.uj.jwtsample.member.entity;
 
-import com.uj.jwtsample.member.model.Member.MemberRegistDto;
-import com.uj.jwtsample.member.repository.MemberRepository;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
