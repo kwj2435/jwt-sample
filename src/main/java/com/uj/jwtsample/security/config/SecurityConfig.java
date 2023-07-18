@@ -6,6 +6,8 @@ import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
@@ -13,7 +15,11 @@ import org.springframework.security.web.SecurityFilterChain;
 public class SecurityConfig{
 
   @Bean
-  public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+  protected PasswordEncoder passwordEncoder() {
+    return new BCryptPasswordEncoder();
+  }
+  @Bean
+  protected SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
     http
         .authorizeHttpRequests((auth) -> auth.anyRequest().permitAll()).csrf(Customizer.withDefaults());
     // http basic - 특정 resource 접근시 브라우저가 사용자에게 username, password 확인을 요청

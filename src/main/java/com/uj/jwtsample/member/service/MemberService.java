@@ -9,6 +9,7 @@ import com.uj.jwtsample.member.model.Member.MemberResult;
 import com.uj.jwtsample.member.repository.MemberRepository;
 import java.util.Objects;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -18,6 +19,8 @@ public class MemberService {
   private final MemberRepository memberRepository;
 
   private final MemberMapper memberMapper;
+
+  private final PasswordEncoder passwordEncoder;
 
   public MemberResult registMember(MemberRegistDto registDto) {
 
