@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class SecurityController {
 
-  private AuthService authService;
+  private final AuthService authService;
 
   // 로그인
   // RefreshToken 재발급
