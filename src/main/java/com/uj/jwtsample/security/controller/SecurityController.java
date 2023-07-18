@@ -18,9 +18,14 @@ public class SecurityController {
   private final AuthService authService;
 
   // 로그인
-  // RefreshToken 재발급
   @PostMapping("/auth")
   public TokenInfo authenticate(@RequestBody AuthRequestDto authRequestDto) {
     return authService.authByEmailAndPassword(authRequestDto.getEmail(), authRequestDto.getPassword());
+  }
+
+  // RefreshToken 재발급
+  @PostMapping("/renew/refresh")
+  public TokenInfo renewRefreshToken() {
+    return new TokenInfo("123", "123");
   }
 }
