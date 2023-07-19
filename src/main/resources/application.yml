@@ -4,8 +4,16 @@ spring:
     username: sa
     password:
     driver-class-name: org.h2.Driver
+  data:
+    redis:
+      host: localhost
+      port: 6379
+
   jpa:
     show-sql: true
 
 jwt:
-  secret: "uijintest!@#2323"
+  secret:
+    access-token: "23rkGU45258GGhiolLO24dfd64TFY5345kGU45258GGhiolLO2465TFY5344"
+    refresh-token: "23rkab45258GGhcdlLO24dfdf64TFY5345kGU45258GGhiolLO2465TFY5224"
+

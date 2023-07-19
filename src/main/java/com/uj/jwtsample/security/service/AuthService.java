@@ -7,7 +7,11 @@ import com.uj.jwtsample.member.enums.UserRoles;
 import com.uj.jwtsample.member.mapper.MemberMapper;
 import com.uj.jwtsample.member.model.Member.MemberResult;
 import com.uj.jwtsample.member.repository.MemberRepository;
+import com.uj.jwtsample.security.entity.redis.TokenRedisEntity;
+import com.uj.jwtsample.security.enums.TokenType;
 import com.uj.jwtsample.security.model.Token.TokenInfo;
+import com.uj.jwtsample.security.repository.redis.TokenRedisEntityRepository;
+import com.uj.jwtsample.security.utils.JwtUtils;
 import java.util.HashSet;
 import java.util.Set;
 import lombok.RequiredArgsConstructor;
@@ -25,10 +29,11 @@ import org.springframework.stereotype.Service;
 public class AuthService implements UserDetailsService {
 
   private final MemberRepository memberRepository;
+  private final TokenRedisEntityRepository tokenRedisEntityRepository;
 
   private final PasswordEncoder passwordEncoder;
 
-  private final MemberMapper memberMapper;
+  private final JwtUtils jwtUtils;
 
   @Override
   public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
@@ -50,6 +55,10 @@ public class AuthService implements UserDetailsService {
       throw new BaseException(ExceptionCode.ERROR_MEMBER_400_02);
     }
 
-    return new TokenInfo("abc", "def");
+    String accessToken = jwtUtils.createToken(email, TokenType.AT);
+    String refreshToken = jwtUtils.createToken(email, TokenType.RT);
+    tokenRedisEntityRepository.save(new TokenRedisEntity(email, refreshToken));
+
+    return new TokenInfo(accessToken, refreshToken);
   }
 }
