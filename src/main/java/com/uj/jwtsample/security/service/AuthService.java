@@ -4,8 +4,6 @@ import com.uj.jwtsample.common.exception.BaseException;
 import com.uj.jwtsample.common.exception.ExceptionCode;
 import com.uj.jwtsample.member.entity.MemberEntity;
 import com.uj.jwtsample.member.enums.UserRoles;
-import com.uj.jwtsample.member.mapper.MemberMapper;
-import com.uj.jwtsample.member.model.Member.MemberResult;
 import com.uj.jwtsample.member.repository.MemberRepository;
 import com.uj.jwtsample.security.entity.redis.TokenRedisEntity;
 import com.uj.jwtsample.security.enums.TokenType;
@@ -49,10 +47,10 @@ public class AuthService implements UserDetailsService {
 
   public TokenInfo authByEmailAndPassword(String email, String password) {
     MemberEntity memberEntity = memberRepository.findByEmail(email).orElseThrow(
-        () -> new BaseException(ExceptionCode.ERROR_MEMBER_400_02));
+        () -> new BaseException(ExceptionCode.ERROR_MEMBER_400_002));
 
     if(!passwordEncoder.matches(password, memberEntity.getPassword())) {
-      throw new BaseException(ExceptionCode.ERROR_MEMBER_400_02);
+      throw new BaseException(ExceptionCode.ERROR_MEMBER_400_002);
     }
 
     String accessToken = jwtUtils.createToken(email, TokenType.AT);

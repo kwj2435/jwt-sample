@@ -9,7 +9,6 @@ import com.uj.jwtsample.member.model.Member.MemberResult;
 import com.uj.jwtsample.member.repository.MemberRepository;
 import java.util.Objects;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -26,7 +25,7 @@ public class MemberService {
   public MemberResult registMember(MemberRegistDto registDto) {
 
     if(!isValidPassword(registDto.getPassword(), registDto.getPasswordCheck())) {
-      throw new BaseException(ExceptionCode.ERROR_MEMBER_400_01);
+      throw new BaseException(ExceptionCode.ERROR_MEMBER_400_001);
     }
 
     MemberEntity savedMemberEntity =

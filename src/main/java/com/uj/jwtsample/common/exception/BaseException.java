@@ -17,5 +17,5 @@ public class BaseException extends RuntimeException{
     this.code = exceptionCode.getCode();
     this.description = exceptionCode.getDescription();
     this.httpStatus = exceptionCode.getHttpStatus();
-  }
+   }
 }
