@@ -53,6 +53,7 @@ public class AuthService implements UserDetailsService {
       throw new BaseException(ExceptionCode.ERROR_MEMBER_400_002);
     }
 
+    // 토큰 발행 및 캐싱
     String accessToken = jwtUtils.createToken(email, TokenType.AT);
     String refreshToken = jwtUtils.createToken(email, TokenType.RT);
     tokenRedisEntityRepository.save(new TokenRedisEntity(email, refreshToken));

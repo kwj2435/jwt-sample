@@ -3,6 +3,7 @@ package com.uj.jwtsample.member.controller;
 import com.uj.jwtsample.member.model.Member.MemberRegistDto;
 import com.uj.jwtsample.member.model.Member.MemberResult;
 import com.uj.jwtsample.member.service.MemberService;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 @RequestMapping("/api/member")
 public class MemberController {
+  private final String ACCESS_TOKEN_HEADER_NAME = "at";
 
   private final MemberService memberService;
 
@@ -23,8 +25,8 @@ public class MemberController {
     return memberService.registMember(registDto);
   }
 
-  @GetMapping("")
-  public void getMember() {
-    System.out.println("test");
+  @GetMapping
+  public MemberResult getMember(HttpServletRequest request) {
+    return memberService.getMember(request.getHeader(ACCESS_TOKEN_HEADER_NAME));
   }
 }
