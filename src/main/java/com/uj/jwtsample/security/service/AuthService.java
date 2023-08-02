@@ -11,6 +11,7 @@ import com.uj.jwtsample.security.model.Token.TokenInfo;
 import com.uj.jwtsample.security.repository.redis.TokenRedisEntityRepository;
 import com.uj.jwtsample.security.utils.JwtUtils;
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
@@ -59,5 +60,11 @@ public class AuthService implements UserDetailsService {
     tokenRedisEntityRepository.save(new TokenRedisEntity(email, refreshToken));
 
     return new TokenInfo(accessToken, refreshToken);
+  }
+
+  public void logout(String accessToken) {
+    String email = jwtUtils.getEmailFromClaim(accessToken);
+    Optional<TokenRedisEntity> refreshToken = tokenRedisEntityRepository.findById(email);
+    refreshToken.ifPresent(tokenRedisEntityRepository::delete);
   }
 }

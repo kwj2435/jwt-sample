@@ -33,13 +33,10 @@ public class JwtUtils {
   }
   /**
    * 토큰 생성
-   * Claims -
-   * Subject -
-   * IssuedAt -
-   * Expiration -
    */
   public String createToken(String email, TokenType tokenType) {
     Map<String, Object> claims = new HashMap<>();
+    claims.put("email", email);
     long expireTime = ACCESS_TOKEN_EXPIRE_TIME;
     Key secretKey = jwtAccessKey;
 
@@ -54,5 +51,15 @@ public class JwtUtils {
         .setIssuedAt(new Date(System.currentTimeMillis() + expireTime))
         .signWith(secretKey, SignatureAlgorithm.HS256)
         .compact();
+  }
+
+  public String getEmailFromClaim(String accessToken) {
+    return Jwts.parserBuilder()
+        .setSigningKey(jwtAccessKey)
+        .build()
+        .parseClaimsJws(accessToken)
+        .getBody()
+        .get("email")
+        .toString();
   }
 }

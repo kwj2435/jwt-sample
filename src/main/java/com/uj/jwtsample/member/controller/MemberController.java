@@ -1,5 +1,7 @@
 package com.uj.jwtsample.member.controller;
 
+import static com.uj.jwtsample.common.constant.CommonConstant.ACCESS_TOKEN_HEADER_NAME;
+
 import com.uj.jwtsample.member.model.Member.MemberRegistDto;
 import com.uj.jwtsample.member.model.Member.MemberResult;
 import com.uj.jwtsample.member.service.MemberService;
@@ -16,8 +18,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 @RequestMapping("/api/member")
 public class MemberController {
-  private final String ACCESS_TOKEN_HEADER_NAME = "at";
-
   private final MemberService memberService;
 
   @PostMapping("/regist")
