@@ -47,8 +47,8 @@ public class AuthService implements UserDetailsService {
   }
 
   public TokenInfo authByEmailAndPassword(String email, String password) {
-    MemberEntity memberEntity = memberRepository.findByEmail(email).orElseThrow(
-        () -> new BaseException(ExceptionCode.ERROR_MEMBER_400_002));
+    MemberEntity memberEntity = memberRepository.findByEmail(email)
+        .orElseThrow(() -> new BaseException(ExceptionCode.ERROR_MEMBER_400_002));
 
     if(!passwordEncoder.matches(password, memberEntity.getPassword())) {
       throw new BaseException(ExceptionCode.ERROR_MEMBER_400_002);

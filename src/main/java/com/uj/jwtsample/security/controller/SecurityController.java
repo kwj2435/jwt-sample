@@ -2,7 +2,6 @@ package com.uj.jwtsample.security.controller;
 
 import static com.uj.jwtsample.common.constant.CommonConstant.ACCESS_TOKEN_HEADER_NAME;
 
-import com.uj.jwtsample.security.model.Authenticate;
 import com.uj.jwtsample.security.model.Authenticate.AuthRequestDto;
 import com.uj.jwtsample.security.model.Token.TokenInfo;
 import com.uj.jwtsample.security.service.AuthService;

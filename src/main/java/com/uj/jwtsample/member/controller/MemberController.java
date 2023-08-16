@@ -20,11 +20,13 @@ import org.springframework.web.bind.annotation.RestController;
 public class MemberController {
   private final MemberService memberService;
 
+  /** 회원 가입 */
   @PostMapping("/regist")
   public MemberResult registMember(@Valid @RequestBody MemberRegistDto registDto) {
     return memberService.registMember(registDto);
   }
 
+  /** 내 정보 조회 */
   @GetMapping
   public MemberResult getMember(HttpServletRequest request) {
     return memberService.getMember(request.getHeader(ACCESS_TOKEN_HEADER_NAME));
